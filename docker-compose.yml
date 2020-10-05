@@ -41,6 +41,15 @@ services:
     volumes: 
       - ./src:/var/www
     ports:
-      - "9000:9000"
+      - "9000:80"
     networks: 
       - laravel
+  composer:
+    image: composer:1.9
+    command: ["composer", "install"]
+    depends_on:
+      - php
+      - mysql
+      - nginx
+    volumes:
+      - ./src:/var/www
